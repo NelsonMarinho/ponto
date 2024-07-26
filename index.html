@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Registro de Ponto</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Controle de Registro de Ponto</h1>
+        <form id="timeForm">
+            <div class="form-group">
+                <label for="entrada">Entrada:</label>
+                <input type="datetime-local" id="entrada" name="entrada" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="saidaAlmoco">Saída para Almoço:</label>
+                <input type="datetime-local" id="saidaAlmoco" name="saidaAlmoco" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="retornoAlmoco">Retorno do Almoço:</label>
+                <input type="datetime-local" id="retornoAlmoco" name="retornoAlmoco" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="saida">Saída:</label>
+                <input type="datetime-local" id="saida" name="saida" class="form-control">
+            </div>
+
+            <button type="button" onclick="calcularHoras()" class="btn btn-success">Calcular</button>
+        </form>
+
+        <div id="resultados" class="mt-4">
+            <p>Horas no Primeiro Turno: <span id="horasPrimeiroTurno"></span></p>
+            <p>Horas no Segundo Turno: <span id="horasSegundoTurno"></span></p>
+            <p>Total de Horas Trabalhadas: <span id="totalHoras"></span></p>
+            <p>Saldo de Banco de Horas: <span id="bancoHoras"></span></p>
+            <div id="mensagem"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

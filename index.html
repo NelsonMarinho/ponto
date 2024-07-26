@@ -1,45 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Controle de Registro de Ponto</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container mt-5">
-        <h1>Controle de Registro de Ponto</h1>
-        <form id="timeForm">
-            <div class="form-group">
-                <label for="entrada">Entrada:</label>
-                <input type="datetime-local" id="entrada" name="entrada" class="form-control">
+    <div class="background-overlay">
+        <div class="container mt-5 col-12 col-md-6 form-container">
+            <h1 class="text-center">Controle de Registro de Ponto</h1>
+            <form id="timeForm">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="entrada">Entrada:</label>
+                        <div class="input-group">
+                            <input type="date" id="dataEntrada" name="dataEntrada" class="form-control" readonly>
+                            <input type="time" id="horaEntrada" name="horaEntrada" class="form-control" tabindex="1">
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="saidaAlmoco">Saída para Almoço:</label>
+                        <div class="input-group">
+                            <input type="date" id="dataSaidaAlmoco" name="dataSaidaAlmoco" class="form-control" readonly>
+                            <input type="time" id="horaSaidaAlmoco" name="horaSaidaAlmoco" class="form-control" tabindex="2">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="retornoAlmoco">Retorno do Almoço:</label>
+                        <div class="input-group">
+                            <input type="date" id="dataRetornoAlmoco" name="dataRetornoAlmoco" class="form-control" readonly>
+                            <input type="time" id="horaRetornoAlmoco" name="horaRetornoAlmoco" class="form-control" tabindex="3">
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="saida">Saída:</label>
+                        <div class="input-group">
+                            <input type="date" id="dataSaida" name="dataSaida" class="form-control" readonly>
+                            <input type="time" id="horaSaida" name="horaSaida" class="form-control" tabindex="4">
+                        </div>
+                    </div>
+                </div>
+                <button type="button" onclick="calcularHoras()" class="btn btn-success btn-block" tabindex="5">Calcular</button>
+            </form>
+            <div id="resultados" class="mt-4">
+                <p>Horas no Primeiro Turno: <span id="horasPrimeiroTurno"></span></p>
+                <p>Horas no Segundo Turno: <span id="horasSegundoTurno"></span></p>
+                <p>Total de Horas Trabalhadas: <span id="totalHoras"></span></p>
+                <p>Saldo de Banco de Horas: <span id="bancoHoras"></span></p>
+                <div id="mensagem"></div>
             </div>
-
-            <div class="form-group">
-                <label for="saidaAlmoco">Saída para Almoço:</label>
-                <input type="datetime-local" id="saidaAlmoco" name="saidaAlmoco" class="form-control">
-            </div>
-
-            <div class="form-group">
-                <label for="retornoAlmoco">Retorno do Almoço:</label>
-                <input type="datetime-local" id="retornoAlmoco" name="retornoAlmoco" class="form-control">
-            </div>
-
-            <div class="form-group">
-                <label for="saida">Saída:</label>
-                <input type="datetime-local" id="saida" name="saida" class="form-control">
-            </div>
-
-            <button type="button" onclick="calcularHoras()" class="btn btn-success">Calcular</button>
-        </form>
-
-        <div id="resultados" class="mt-4">
-            <p>Horas no Primeiro Turno: <span id="horasPrimeiroTurno"></span></p>
-            <p>Horas no Segundo Turno: <span id="horasSegundoTurno"></span></p>
-            <p>Total de Horas Trabalhadas: <span id="totalHoras"></span></p>
-            <p>Saldo de Banco de Horas: <span id="bancoHoras"></span></p>
-            <div id="mensagem"></div>
+            <footer class="text-center mt-4">
+                <p>Versão do Sistema: 1.5.3</p>
+            </footer>
         </div>
     </div>
     <script src="script.js"></script>

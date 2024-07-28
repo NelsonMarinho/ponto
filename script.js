@@ -3,11 +3,19 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function setDefaultDates() {
-    const today = new Date().toISOString().split('T')[0];
-    document.getElementById('dataEntrada').value = today;
-    document.getElementById('dataSaidaAlmoco').value = today;
-    document.getElementById('dataRetornoAlmoco').value = today;
-    document.getElementById('dataSaida').value = today;
+    const today = new Date();
+    const formattedDate = formatDateBR(today);
+    document.getElementById('dataEntrada').value = formattedDate;
+    document.getElementById('dataSaidaAlmoco').value = formattedDate;
+    document.getElementById('dataRetornoAlmoco').value = formattedDate;
+    document.getElementById('dataSaida').value = formattedDate;
+}
+
+function formatDateBR(date) {
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = date.getFullYear();
+    return `${year}-${month}-${day}`;
 }
 
 function calcularHoras() {
@@ -47,7 +55,9 @@ function calcularHoras() {
     const mensagem = document.getElementById('mensagem');
     mensagem.innerHTML = ''; // Limpar mensagem anterior
 
-    if (bancoHoras < 0) {
+    if ((retornoAlmoco - saidaAlmoco) / msPorHora < 1) {
+        mensagem.innerHTML = `<div class="alert alert-danger" role="alert"><i class="fas fa-exclamation-triangle"></i> O intervalo de almoço deve ser no mínimo de 1 hora.</div>`;
+    } else if (bancoHoras < 0) {
         mensagem.innerHTML = `<div class="alert alert-danger" role="alert"><i class="fas fa-exclamation-triangle"></i> Você ficará com saldo negativo de ${formatarHoras(bancoHoras)} no banco de horas.</div>`;
     } else if (bancoHoras <= 1 + 58 / 60) {
         mensagem.innerHTML = `<div class="alert alert-warning" role="alert"><i class="fas fa-exclamation-triangle"></i> Você ainda pode bater o ponto.</div>`;
